@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGUAA HALL CHRISTIAN FELLOWSHIP - OHCF</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #12e251;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #19f365 0%, #277a44 100%);
+            padding: 20px 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            padding: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .logo-placeholder:hover {
+            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-placeholder img {
+            max-width: 150%;
+            max-height: 120%;
+            border-radius: 6px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 15px 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .slogan {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #1a472a;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover {
+            background-color: #2d5a3d;
+            border-bottom-color: #ffd700;
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(18, 226, 91, 0.7), rgba(26, 101, 53, 0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="people" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="30" cy="20" r="8" fill="%23FFD700" opacity="0.3"/><path d="M 30 30 L 20 50 L 40 50 Z" fill="%23FFD700" opacity="0.3"/><circle cx="70" cy="25" r="8" fill="%23FFD700" opacity="0.3"/><path d="M 70 35 L 60 55 L 80 55 Z" fill="%23FFD700" opacity="0.3"/></pattern></defs><rect fill="%232d5a3d" width="1200" height="600"/><rect fill="url(%23people)" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(246, 214, 5, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(18, 223, 203, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ffd700;
+            color: #1a472a;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin: 50px 0;
+        }
+
+        section h2 {
+            font-size: 2.2em;
+            color: #1a472a;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 15px;
+        }
+
+        /* Activities Section */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .activity-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #ffd700;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-left-color: #1a472a;
+        }
+
+        .activity-card h3 {
+            color: #1a472a;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .activity-card p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .activity-time {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: rgb(148, 249, 180);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 30px 0;
+        }
+
+        .upload-section h3 {
+            color: #1a472a;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .upload-placeholder {
+            border: 2px dashed #ffd700;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .upload-placeholder:hover {
+            background-color: #fffef0;
+            border-color: #1a472a;
+        }
+
+        .upload-placeholder p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .upload-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        .upload-btn {
+            background-color: #1a472a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background-color: #2d5a3d;
+            transform: translateY(-2px);
+        }
+
+        /* Programs Section */
+        .programs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .program-card {
+            background: rgb(148, 249, 180);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid #ffd700;
+        }
+
+        .program-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .program-card h4 {
+            color: #1a472a;
+            margin-bottom: 15px;
+        }
+
+        /* Square Program Upload Container */
+        .program-upload-container {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            border: 2px dashed #ffd700;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .program-upload-container:hover {
+            background-color: #0be66e;
+            border-color: #1a472a;
+        }
+
+        .program-upload-container p {
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Square Weekly Activities Upload Container */
+        .activities-upload-container {
+            width: 300px;
+            height: 300px;
+            margin: 10px auto;
+            border: 2px dashed #ffd700;
+            border-radius: 8px;
+            background-color: #f2f8f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .activities-upload-container:hover {
+            background-color: #0ae168;
+            border-color: #1a472a;
+        }
+
+        .activities-upload-container p {
+            color: #666;
+            text-align: center;
+            padding: 20px;
+        }
+
+    
+        #homeAnnouncements div {
+          background: #f4f4f4;
+          padding: 10px;
+          margin-bottom: 10px;
+          border-left: 5px solid #27ae60;
+           border-radius: 5px;
+      }
+
+            /* Christian Loterature Section */
+        .literature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .literature-item {
+            background: rgb(237, 237, 234);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .literature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .literature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .literature-item h4 {
+            color: #1a472a;
+            margin-bottom: 15px;
+        }
+
+        .literature-link {
+            display: inline-block;
+            background-color: #1a472a;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .literature-link:hover {
+            background-color: #ffd700;
+            color: #1a472a;
+        }
+
+        /* About Us Section */
+        .about-content {
+            background: rgb(243, 231, 7);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            line-height: 1.8;
+        }
+
+        .about-content p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+.contact-box {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+input, textarea, button {
+  width: 100%;
+  padding: 10px;
+}
+
+button {
+  background: #27ae60;
+  color: white;
+  border: none;
+}
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .slogan {
+                font-size: 1.2em;
+            }
+
+            .hero h2 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav a {
+                padding: 2px 4px;
+            }
+
+            .logo-section {
+                gap: 15px;
+            }
+
+            .logo-placeholder {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeIn 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <!-- LOGO PLACEHOLDERS - Replace with your actual logos -->
+                <div class="logo-placeholder">
+                    <img src="OGUAA HALL LOGO.jpg" alt="Hall Logo">
+                </div>
+                <div class="logo-placeholder">
+                    <img src="OHCF LOGO.jpg" alt="OHCF Logo">
+                </div>
+                <div class="logo-placeholder">
+                    <img src="GHAFES LOGO.jpg" alt="GHAFES Logo">
+                </div>
+            </div>
+            <h1>OGUAA HALL CHRISTIAN FELLOWSHIP</h1>
+            <h2 style="font-size: 1.2em; margin-bottom: 10px;">(OHCF)</h2>
+            <p class="slogan">✦ Know Christ, Make Him Known! ✦</p>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#literature">Christian Literature</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Welcome to Our Christian Fellowship</h2>
+            <p>A non-denominational fellowship devoted to Christ and Christian excellence</p>
+            <a href="#activities" class="cta-button">Explore Our Activities</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Activities Section -->
+        <section id="activities">
+            <h2>Weekly Activities</h2>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <h3>🙏 Friday Morning Devotion</h3>
+                    <h4>Venue: [JCRC]</h4>
+                    <p>Start your week with spiritual nourishment and prayer</p>
+                    <p class="activity-time">⏰ 4:15 AM - 5:30 AM</p>
+                </div>
+                <div class="activity-card">
+                    <h3>📖 Sunday Evening Prayers</h3>
+                    <h4>Venue: [Sports Complex]</h4>
+                    <p>End your week in fellowship and intercession</p>
+                    <p class="activity-time">⏰ 6:30 PM - 8:00 PM</p>
+                </div>
+            </div>
+
+            <!-- Weekly Activities Flyer Section -->
+            <div class="upload-section">
+                <h3>📍 Weekly Activities-Fridays </h3>
+                <!-- TO ADD FLYER IMAGE: Replace the code below with your image -->
+                <div class="activities-upload-container">
+                    <p>Weekly Activities Flyer</p>
+                    <!-- CODE PLACEHOLDER: Insert your flyer image here -->
+                    <!-- EXAMPLE: <img src="path/to/your/weekly-flyer.jpg" alt="Weekly Activities Flyer" style="max-width: 100%; max-height: 100%; border-radius: 6px;"> -->
+                </div>
+            </div>
+            <!-- Weekly Activities Flyer Section -->
+            <div class="upload-section">
+                <h3>📍 Weekly Activities-Sundays </h3>
+                <!-- TO ADD FLYER IMAGE: Replace the code below with your image -->
+                <div class="activities-upload-container">
+                    <img src="Sundays P.M flyer.jpeg" alt="Weekly Activities Flyer" style="max-width: 115%; max-height: 115%; object-fit: contain; border-radius: 10px;">
+                    <!-- CODE PLACEHOLDER: Insert your flyer image here -->
+                    <!-- EXAMPLE: <img src="path/to/your/weekly-flyer.jpg" alt="Weekly Activities Flyer" style="max-width: 100%; max-height: 100%; border-radius: 6px;"> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Major Programs Section -->
+        <section>
+            <h2>Major Programs</h2>
+            <div class="programs-list">
+                <div class="program-card">
+                    <h4>📢 Upcoming Programs</h4>
+                    <!-- TO ADD PROGRAM IMAGE: Replace the code below with your program poster/image -->
+                    <div class="program-upload-container">
+                        <!-- CODE PLACEHOLDER: Insert your program image here -->
+                        <!-- EXAMPLE: <img src="path/to/your/program-poster.jpg" alt="Upcoming Programs" style="max-width: 100%; max-height: 100%; border-radius: 6px;"> -->
+                        <p>Program Details</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2>📢 Latest Announcements</h2>
+<div id="homeAnnouncements"></div>
+<div id="downloadSection"></div>
+
+        <!-- Christian Literature Section -->
+        <section id="literature">
+            <h2>Christian Literature</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #18cc39;"><h4>Access biblical resources and Christian materials for spiritual growth</h4></p>
+            <div class="literature-grid">
+                <div class="literature-item">
+                    <div class="literature-icon">📚</div>
+                    <h4>Devotionals</h4>
+                    <p>Daily spiritual guidance and reflection</p>
+                    <ul>
+                    <li><a href="_OceanofPDF.com_Hope_for_Each_Day_-_Billy_Graham.pdf" download>Download Devotional Hope for Each Day-Billy Graham</a></li>
+                    <li><a href="_OceanofPDF.com_The_Confident_Woman_Devotional_-_Joyce_Meyer.pdf" download>Download Devotional The Confident Woman - Joyce Meyer</a></li>
+                    <li><a href="_Benny_Hinn-+Good+Morning+Holy+Spirit - Copy.pdf" download>Download Devotional Good Morning Holy Spirit - Benny Hinn</a></li>
+                    <li><a href="_OceanofPDF.com_The_Secret_of_Happiness_-_Billy_Graham-1.pdf" download>Download Devotional The Secret of Happiness - Billy Graham</a></li>
+                    </ul>
+                </div>
+                <div class="literature-item">
+                    <div class="literature-icon">📖</div>
+                    <h4>Bible Studies</h4>
+                    <p>In-depth biblical teachings and analysis</p>
+                    <ul>
+                    <li><a href="_OceanofPDF.com_Each_One_Disciple_One_-_Stan_Toler.pdf" download>View Each One Disciple One - Stan Toler</a></li>
+                    <li><a href="A Readers Guide to the Bible (John Goldingay -Goldingay, John-) (z-lib.org).pdf" download>View A Readers Guide to the Bible - John Goldingay</a></li>
+                    </ul>
+                </div>
+                <div class="literature-item">
+                    <div class="literature-icon">✝️</div>
+                    <h4>Sermons</h4>
+                    <p>Listen to Podcasts</p>
+                    <ul>
+                        <li><audio controls src="Force yourself to kill the old you.webm" style="max-width: 200px; max-height: 50px;"></audio></li>
+                        <p>Dr. Myles Munroe</p>
+                        <a href="Force yourself to kill the old you.webm" download="Podcast.mp3">Download</a>
+                
+                        <li><audio controls src="The Extrinsic Requirements for Fulfilling Purpose.mp3" style="max-width: 200px; max-height: 50px;"></audio></li>
+                        <p>Apostle Ph.D Michael Orokpo</p>
+                        <a href="The Extrinsic Requirements for Fulfilling Purpose.mp3" download="Podcast.mp3">Download</a>
+                    </ul>
+                    <a href="#" class="literature-link">Listen Now</a>
+                </div>
+                <div class="literature-item">
+                    <div class="literature-icon">🎯</div>
+                    <h4>Discipleship Materials</h4>
+                    <p>Resources for spiritual development</p>
+                    <ul>
+                        <li><a href="_OceanofPDF.com_Each_One_Disciple_One_-_Stan_Toler.pdf" download>View Each One Disciple One - Stan Toler</a></li>
+                        <li><a href="Your Rights in Christ.pdf" download>View Your Rights in Christ - Pastor Chris Oyakhilome</a></li>
+                        <li><a href="_OceanofPDF.com_Understanding_your_potential_-_Myles_Munroe.pdf" download>View Understanding Your Potential - Myles Munroe</a></li>
+                    </ul>
+            </div>
+        </div>    
+
+            <!-- Christian Literature Upload Section -->
+            <div class="upload-section" style="margin-top: 40px;">
+                <h3>📁 Christian Literature - Available Resources</h3>
+                <!-- TO ADD LITERATURE: Replace the links below or add your PDF documents -->
+                 <ul>
+                    <li><a href="_OceanofPDF.com_the_purpose_driven_life_what_on_earth_am_i_here_for_-_Rick_Warren.pdf" download>View The Purpose Driven Life - Rick Warren</a></li>
+                    <li><a href="_OceanofPDF.com_The_power_of_vision_-_Myles_Munroe.pdf" download>View The Power of Vision - Myles Munroe</a></li>
+                    <li><a href="Fruit_of_the_Spirit_Study_guide John Edminson - Copy.pdf"  download>View The Fruit of the Spirit - John Edminson</a></li>
+                    <li><a href="backsliding.pdf"  download>View The Backsliding Christian - Bishop Dag Heward-Mills</a></li>
+                    <li><a href="Walking-In-Wisdom-David-Oyedepo.pdf" download>View Walking in Wisdom - David Oyedepo</a></li>
+                    <li><a href="Wisdom On ... Growing in Christ (Mark... (z-lib.org).pdf" download>View Wisdom On ... Growing in Christ - Mark DeYoe</a></li>
+                    <li><a href="Waiting-And-Dating-Myles-MunroeChristiandiet.com_.ng_.pdf" download>View Waiting and Dating - Myles Munroe</a></li>
+                    <li><a href="offenses-dont-take-them.pdf" download>View Offenses Don't Take Them - Ashish Raichur</a></li>
+                    <li><a href="_OceanofPDF.com_the_purpose_driven_life_what_on_earth_am_i_here_for_-_Rick_Warren.pdf" download>View The Purpose Driven Life - Rick Warren</a></li>
+                    <li><a href="_OceanofPDF.com_the_purpose_driven_life_what_on_earth_am_i_here_for_-_Rick_Warren.pdf" download>View The Purpose Driven Life - Rick Warren</a></li>
+                    <!-- CODE PLACEHOLDER: Insert your literature links here -->
+                    <!-- EXAMPLE: 
+                    <a href="path/to/document.pdf" class="literature-link" download>Download Document Name</a>
+                    -->
+                </div>
+            </div>
+        </section>
+        <section>
+            <p style="color: #1adb44; text-align: center;">
+                <h3>Please note that the above books and resouces are not owned by OHCF, but are made available for the affiliates of the Hall to access and download for their spiritual growth and personal development.
+                We encourage all members to utilize these resourses for their edification and deep their relationship with Christ.</h3>
+            </p>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <p>
+                    <strong>Oguaa Hall Christian Fellowship</strong> is a non-denominational fellowship which is committed to providing Christian values, discipleship, and Christ-like character to the lovely affiliates of the Hall.
+                </p>
+                <p>
+                    Our mission is to foster a vibrant community of believers who are dedicated to knowing Christ deeply and making Him known to others. Through prayer, worship, biblical study, and fellowship, we aim to develop spiritually mature individuals who exemplify Christ's love and character in every aspect of their lives.
+                </p>
+                <p>
+                    We welcome all members of our hall to join us as we grow together in faith and service to our Savior.
+                </p>
+            </div>
+        </section>
+
+        <div class="contact-box">
+  <h2>Prayer Request / Contact</h2>
+
+  <form id="contactForm">
+    <input type="text" id="prayerName" placeholder="Your Name (optional)"><br><br>
+
+    <textarea id="prayerRequest" placeholder="Write your message..." required></textarea><br><br>
+
+    <button type="submit">Send</button>
+  </form>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        await postPrayer();
+    });
+  </script>
+
+  <p id="responseMsg"></p>
+</div>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <div class="upload-section" style="text-align: center;">
+                <h3>Contact Us</h3>
+                <div class="contact-info" style="color: #555; margin: 20px 0;">
+                    <p><strong>Email:</strong> <a href="mailto:ohcf@example.com" style="color: #1a472a; text-decoration: none;">ohcf@example.com</a></p>
+                    <p><strong>Phone:</strong> +233 XX XXX XXXX</p>
+                    <p><strong>Location:</strong> Oguaa Hall, University of Cape Coast</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Oguaa Hall Christian Fellowship (OHCF). All rights reserved.</p>
+        <p>Made with ❤️ in service to Christ</p>
+        <div class="contact-info">
+            <p><strong>Follow Us:</strong> Facebook | Instagram | WhatsApp</p>
+        </div>
+    </footer>
+
+    <script>
+const API_BASE = "https://ohcf-dashboard-2.onrender.com/api";
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ==========================
+// LOAD ANNOUNCEMENTS (HOME)
+// ==========================
+async function loadHomeAnnouncements() {
+  try {
+    const res = await fetch(`${API_BASE}/announcements`);
+    const data = await res.json();
+
+    const container = document.getElementById("homeAnnouncements");
+    container.innerHTML = "";
+
+    data.slice(0, 3).forEach(a => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <h4>${a.title}</h4>
+        <p>${a.message}</p>
+        <hr>
+      `;
+      container.appendChild(div);
+    });
+  } catch (err) {
+    console.error("Error loading announcements:", err);
+  }
+}
+loadHomeAnnouncements();
+
+// ==========================
+// LOAD DOWNLOADABLE FILES
+// ==========================
+async function loadDownloadFiles() {
+  try {
+    const res = await fetch(`${API_BASE}/content`);
+    const data = await res.json();
+
+    const container = document.getElementById("downloadSection");
+    container.innerHTML = "<h2>📥 Download Files</h2>";
+
+    if (data.length === 0) {
+      container.innerHTML += "<p>No files available yet.</p>";
+      return;
+    }
+
+    data.forEach(item => {
+      const fileUrl = `https://ohcf-dashboard-2.onrender.com/uploads/${item.file}`;
+
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <h4>${item.title}</h4>
+        <p>${item.category}</p>
+        <a href="${fileUrl}" download style="color: blue;">
+          Download File
+        </a>
+        <hr>
+      `;
+
+      container.appendChild(div);
+    });
+
+  } catch (err) {
+    console.error("Error loading files:", err);
+  }
+}
+
+// Run it
+loadDownloadFiles();
+
+// ==========================
+// POST PRAYER REQUEST
+// ==========================
+async function postPrayer() {
+  const name = document.getElementById('prayerName').value;
+  const message = document.getElementById('prayerRequest').value;
+
+  if (!message) {
+    alert('Please enter your prayer request');
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, message })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      alert("Prayer request submitted!");
+      document.getElementById('prayerName').value = '';
+      document.getElementById('prayerRequest').value = '';
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Could not submit. Check your internet or backend.");
+  }
+}
+
+// Analytics tracking (example: page visits)
+    async function trackVisit(page) {
+      await postData('YOUR_BACKEND_URL/analytics', { page, timestamp: new Date() });
+    }
+
+    window.onload = () => { trackVisit(window.location.pathname); };
+</script>
+</body>
+</html>
