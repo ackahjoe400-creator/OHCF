@@ -738,8 +738,6 @@ button {
     <button type="submit">Send</button>
   </form>
 
-  <div id="prayerRequestsList"></div>
-
   <script>
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -776,7 +774,7 @@ button {
     <script>
 const API_BASE = "https://ohcf-dashboard-3.onrender.com/api";
 
-// Smooth scrolling
+// Smooth scrolling (unchanged)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -794,15 +792,14 @@ async function loadHomeAnnouncements() {
   try {
     const res = await fetch(`${API_BASE}/announcements`);
     const data = await res.json();
-
     const container = document.getElementById("homeAnnouncements");
+    if (!container) return;
     container.innerHTML = "";
-
     data.slice(0, 3).forEach(a => {
       const div = document.createElement("div");
       div.innerHTML = `
-        <h4>${a.title}</h4>
-        <p>${a.message}</p>
+        <h4>${escapeHtml(a.title)}</h4>
+        <p>${escapeHtml(a.content)}</p>
         <hr>
       `;
       container.appendChild(div);
@@ -820,56 +817,80 @@ async function loadDownloadFiles() {
   try {
     const res = await fetch(`${API_BASE}/content`);
     const data = await res.json();
-
     const container = document.getElementById("downloadSection");
+    if (!container) return;
     container.innerHTML = "<h2>📥 Download Files</h2>";
-
     if (data.length === 0) {
       container.innerHTML += "<p>No files available yet.</p>";
       return;
     }
-
     data.forEach(item => {
-      const fileUrl = `https://ohcf-dashboard-3.onrender.com/uploads/${item.file}`;
-
+      const fileUrl = item.file_url; // Use the URL from Supabase
       const div = document.createElement("div");
       div.innerHTML = `
-        <h4>${item.title}</h4>
-        <p>${item.category}</p>
-        <a href="${fileUrl}" download style="color: blue;">
+        <h4>${escapeHtml(item.title)}</h4>
+        <p>${escapeHtml(item.category)}</p>
+        <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" style="color: blue;">
           Download File
         </a>
         <hr>
       `;
-
       container.appendChild(div);
     });
-
   } catch (err) {
     console.error("Error loading files:", err);
   }
 }
-
-// Run it
 loadDownloadFiles();
 
 // ==========================
-// LOAD PRAYER REQUESTS
+// POST PRAYER REQUEST
+// ==========================
+async function postPrayer() {
+  const name = document.getElementById('prayerName').value;
+  const message = document.getElementById('prayerRequest').value;
+  if (!message) {
+    alert('Please enter your prayer request');
+    return;
+  }
+  try {
+    // Fixed template literal with backticks
+    const res = await fetch(`${API_BASE}/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, message })
+    });
+    const data = await res.json();
+    if (data.success) {
+      alert("Prayer request submitted!");
+      document.getElementById('prayerName').value = '';
+      document.getElementById('prayerRequest').value = '';
+      // Refresh list if container exists
+      if (document.getElementById('prayerRequestsList')) {
+        loadPrayerRequests();
+      }
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Could not submit. Check your internet or backend.");
+  }
+}
+
+// ==========================
+// LOAD PRAYER REQUESTS (for admin display)
 // ==========================
 async function loadPrayerRequests() {
   try {
     const res = await fetch(`${API_BASE}/contact`);
     const data = await res.json();
-
-    // Assuming you have a container element with id="prayerRequestsList"
     const container = document.getElementById('prayerRequestsList');
     if (!container) return;
-
     if (!data.length) {
       container.innerHTML = '<p>No prayer requests yet.</p>';
       return;
     }
-
     container.innerHTML = data.map(item => `
       <div class="prayer-item">
         <strong>${escapeHtml(item.name) || 'Anonymous'}</strong><br>
@@ -882,7 +903,7 @@ async function loadPrayerRequests() {
   }
 }
 
-// Helper to prevent XSS
+// Helper to prevent XSS (single definition)
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/[&<>]/g, function(m) {
@@ -893,8 +914,19 @@ function escapeHtml(str) {
   });
 }
 
-// Call it when page loads
-document.addEventListener('DOMContentLoaded', loadPrayerRequests);
+// Only load prayer requests if the container exists (e.g., on admin page)
+if (document.getElementById('prayerRequestsList')) {
+  document.addEventListener('DOMContentLoaded', loadPrayerRequests);
+}
+
+// Attach form submit handler if form exists
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    await postPrayer();
+  });
+}
 
 // Analytics tracking (example: page visits)
     async function trackVisit(page) {
