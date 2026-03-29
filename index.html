@@ -738,6 +738,8 @@ button {
     <button type="submit">Send</button>
   </form>
 
+  <div id="prayerRequestsList"></div>
+
   <script>
     document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -852,38 +854,47 @@ async function loadDownloadFiles() {
 loadDownloadFiles();
 
 // ==========================
-// POST PRAYER REQUEST
+// LOAD PRAYER REQUESTS
 // ==========================
-async function postPrayer() {
-  const name = document.getElementById('prayerName').value;
-  const message = document.getElementById('prayerRequest').value;
-
-  if (!message) {
-    alert('Please enter your prayer request');
-    return;
-  }
-
+async function loadPrayerRequests() {
   try {
-    const res = await fetch(`${API_BASE}/contact`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, message })
-    });
-
+    const res = await fetch(`${API_BASE}/contact`);
     const data = await res.json();
 
-    if (data.success) {
-      alert("Prayer request submitted!");
-      document.getElementById('prayerName').value = '';
-      document.getElementById('prayerRequest').value = '';
-    } else {
-      alert("Something went wrong. Please try again.");
+    // Assuming you have a container element with id="prayerRequestsList"
+    const container = document.getElementById('prayerRequestsList');
+    if (!container) return;
+
+    if (!data.length) {
+      container.innerHTML = '<p>No prayer requests yet.</p>';
+      return;
     }
+
+    container.innerHTML = data.map(item => `
+      <div class="prayer-item">
+        <strong>${escapeHtml(item.name) || 'Anonymous'}</strong><br>
+        ${escapeHtml(item.message)}<br>
+        <small>${new Date(item.created_at).toLocaleString()}</small>
+      </div>
+    `).join('');
   } catch (error) {
-    console.error("Error:", error);
-    alert("Could not submit. Check your internet or backend.");
+    console.error('Error loading prayer requests:', error);
   }
 }
+
+// Helper to prevent XSS
+function escapeHtml(str) {
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
+}
+
+// Call it when page loads
+document.addEventListener('DOMContentLoaded', loadPrayerRequests);
 
 // Analytics tracking (example: page visits)
     async function trackVisit(page) {
