@@ -820,17 +820,18 @@ async function loadDownloadFiles() {
     const container = document.getElementById("downloadSection");
     if (!container) return;
     container.innerHTML = "<h2>📥 Download Files</h2>";
+
     if (data.length === 0) {
       container.innerHTML += "<p>No files available yet.</p>";
       return;
     }
+
     data.forEach(item => {
-      const fileUrl = item.file_url; // Use the URL from Supabase
       const div = document.createElement("div");
       div.innerHTML = `
         <h4>${escapeHtml(item.title)}</h4>
         <p>${escapeHtml(item.category)}</p>
-        <a href="${fileUrl}" target="_blank" rel="noopener noreferrer" style="color: blue;">
+        <a href="${item.file_url}" target="_blank" rel="noopener noreferrer" style="color: blue;">
           Download File
         </a>
         <hr>
@@ -841,7 +842,50 @@ async function loadDownloadFiles() {
     console.error("Error loading files:", err);
   }
 }
+
 loadDownloadFiles();
+
+// ------------------------
+// Upload new content
+// ------------------------
+async function uploadContent() {
+  const title = document.getElementById("contentTitle").value;
+  const category = document.getElementById("contentCategory").value;
+  const file = document.getElementById("contentFile").files[0];
+
+  if (!title || !category || !file) {
+    alert("Please fill all fields and select a file");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("category", category);
+  formData.append("file", file);
+
+  try {
+    const res = await fetch(`${API_BASE}/content`, {
+      method: "POST",
+      body: formData
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || "Upload failed");
+    }
+
+    alert("File uploaded successfully!");
+    loadDownloadFiles();
+
+    // Reset form
+    document.getElementById("contentTitle").value = "";
+    document.getElementById("contentCategory").value = "";
+    document.getElementById("contentFile").value = "";
+  } catch (err) {
+    console.error("Upload error:", err);
+    alert("Upload failed: " + err.message);
+  }
+}        
 
 // ==========================
 // POST PRAYER REQUEST
